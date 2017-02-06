@@ -5,7 +5,7 @@ WORKDIR /source
 COPY $source .
 RUN dotnet restore
 RUN dotnet publish
-RUN cp  bin/Debug/netcoreapp1.0/* /app
+RUN cp -r  bin/Debug/netcoreapp1.0 /app
 RUN rm -rf /source/*
 WORKDIR /app
 ENV ASPNETCORE_URLS http://*:80
