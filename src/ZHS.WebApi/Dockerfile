@@ -6,8 +6,8 @@ COPY $source .
 RUN dotnet restore
 RUN dotnet publish
 RUN cp -r  bin/Debug/netcoreapp1.0/publish /app
-RUN rm -rf /source/*
 WORKDIR /app/publish
+RUN rm -rf /ZHS.WebApi/*
 ENV ASPNETCORE_URLS http://*:80
 EXPOSE 80
 ENTRYPOINT dotnet ZHS.WebApi.dll
