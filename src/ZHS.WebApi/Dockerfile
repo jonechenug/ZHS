@@ -1,13 +1,13 @@
 FROM microsoft/dotnet:1.0.3-sdk-projectjson
 RUN mkdir -p /app
 ARG source=.
-WORKDIR /source
+WORKDIR /ZHS.WebApi
 COPY $source .
 RUN dotnet restore
 RUN dotnet publish
-RUN cp -r  bin/Debug/netcoreapp1.0 /app
+RUN cp -r  bin/Debug/netcoreapp1.0/publish /app
 RUN rm -rf /source/*
-WORKDIR /app
+WORKDIR /app/publish
 ENV ASPNETCORE_URLS http://*:80
 EXPOSE 80
 ENTRYPOINT dotnet ZHS.WebApi.dll
