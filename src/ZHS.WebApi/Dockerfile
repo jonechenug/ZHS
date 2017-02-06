@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:1.0.3
+FROM microsoft/dotnet:1.0.3-sdk-projectjson
 RUN mkdir -p /app
 ARG source=.
 WORKDIR /source
