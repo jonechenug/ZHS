@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 
-namespace ZHS
+namespace ZHS.WebApi
 {
     public class Program
     {
@@ -15,7 +15,6 @@ namespace ZHS
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 

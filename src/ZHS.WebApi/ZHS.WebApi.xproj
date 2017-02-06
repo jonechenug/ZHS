@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>660c3fce-7dcc-4f69-948b-4c098f3a9f48</ProjectGuid>
-    <RootNamespace>ZHS</RootNamespace>
+    <ProjectGuid>bd88f16c-ab7b-4bc5-a8a3-139c73a7d794</ProjectGuid>
+    <RootNamespace>ZHS.WebApi</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
