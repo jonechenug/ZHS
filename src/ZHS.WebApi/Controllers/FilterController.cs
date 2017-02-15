@@ -37,11 +37,37 @@ namespace ZHS.WebApi.Controllers
             throw new Exception("异常");
         }
 
+        [ApiErrorAttibute]
+        public ActionResult TryErro()
+        {
+            try
+            {
+                throw new Exception("异常");
+            }
+            catch (Exception)
+            {
+                return new JsonResult("这里是Try catch抛弃的异常");
+            }
+        }
 
         [HttpPost]
-        public String  Validate([FromBody]ValidateModel view)
+        public Int32 ValidateNoFilter([FromBody]ValidateNoFilterModel view)
         {
-            return view.Value;
+            if (view.Num.HasValue)
+            {
+                if (view.Num.Value>0&& view.Num.Value< 1000)
+                {
+                    throw new Exception("数字必须在1到1000之间");
+                }
+                return view.Num.Value;
+            }
+            throw new Exception("数字是必需的");
+        }
+
+        [HttpPost]
+        public Int32 Validate([FromBody]ValidateModel view)
+        {
+            return view.Num.Value;
         }
 
     }
