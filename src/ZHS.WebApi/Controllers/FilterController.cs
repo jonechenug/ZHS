@@ -26,17 +26,20 @@ namespace ZHS.WebApi.Controllers
             return "不需要验证";
         }
 
+        [HttpGet]
         public String Nothing()
         {
             return "这里什么都不做";
         }
 
+        [HttpGet]
         [ApiErrorAttibute]
         public ActionResult Erro()
         {
             throw new Exception("异常");
         }
 
+        [HttpGet]
         [ApiErrorAttibute]
         public ActionResult TryErro()
         {

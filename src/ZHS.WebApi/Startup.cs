@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NPoco;
+using Swashbuckle.Swagger.Model;
 
 namespace ZHS.WebApi
 {
@@ -30,6 +32,27 @@ namespace ZHS.WebApi
             // Add framework services.
             services.AddMvc();
             services.ConfigFilter();
+
+            services.AddSwaggerGen();
+            // Add the detail information for the API.
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "API文档",
+                    Description = "",
+                    TermsOfService = "None",
+                });
+                var basePath = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
+                options.IncludeXmlComments(basePath + "/ZHS.WebApi.xml");
+                options.IncludeXmlComments(basePath + "/ZHS.NPOCO.xml");
+            });
+
+            services.AddScoped<IDatabase>(x =>
+            {
+                return new Database(Configuration.GetConnectionString("Mysql"), DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +60,8 @@ namespace ZHS.WebApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseSwagger();
+            app.UseSwaggerUi() ;
             app.UseMvc();
         }
     }
