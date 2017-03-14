@@ -45,7 +45,7 @@ namespace ZHS.WebApi.Controllers
         {
             if (String.IsNullOrEmpty(vm.Name))
             {
-                throw new Exception("名字不能为空"); 
+                throw new Exception("名字不能为空");
             }
 
             //_db.Delete<Product>(i=>i.Id.In(vm.Ids));
@@ -63,7 +63,7 @@ namespace ZHS.WebApi.Controllers
         [HttpPost]
         public Product Update([FromBody]UpdateModel vm)
         {
-            var updateNum= _db.Modify<Product>(
+            var updateNum = _db.Modify<Product>(
                 new Product
                 {
                     ModifiedTime = DateTime.Now,
@@ -71,11 +71,36 @@ namespace ZHS.WebApi.Controllers
                 },
                 where: i => i.Id == vm.Id,
                 onlyFields: o => new { o.Name, o.ModifiedTime });
-            if (updateNum==1)
+            if (updateNum == 1)
             {
-                return _db.FindByProperties<Product>(i=>i.Id==vm.Id);
+                return _db.FindByProperties<Product>(i => i.Id == vm.Id);
             }
             return null;
+        }
+
+        /// <summary>
+        /// 多种条件分页
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        /// 
+        [HttpPost]
+        public IEnumerable<Product> Page([FromBody] PageVM vm)
+        {
+            var whereProvider = _db.QueryPagedProvider<Product>(
+                where: i => (String.IsNullOrEmpty(vm.Name) ? true: i.Name.StartsWith(vm.Name)) &&
+                          (vm.AddedTimeBegin.HasValue ? i.AddedTime >= vm.AddedTimeBegin : true) &&
+                          (vm.AddedTimeFinal.HasValue ? i.AddedTime <= vm.AddedTimeFinal : true),
+                index: vm.Index,
+                size: vm.Size
+                );
+            if (vm.Ids!=null&&vm.Ids.Count()>0)
+            {
+                whereProvider.Where(i=>i.Id.In(vm.Ids));
+            }
+            //上面只是构造查询条件，一般分页还有排序需求
+            var orderByProvider = whereProvider.OrderByDescending(i => i.AddedTime).ThenByDescending(i => i.Id);
+            return _db.QueryPaged(orderByProvider);
         }
 
 
@@ -96,5 +121,29 @@ namespace ZHS.WebApi.Controllers
         public Int32 Id { get; set; }
 
         public String Name { get; set; }
+    }
+
+    public class PageVM
+    {
+        public IEnumerable<Int32> Ids { get; set; }
+
+        public String Name { get; set; }
+
+        /// <summary>
+        /// 在该时间之后添加的
+        /// </summary>
+        public DateTime? AddedTimeBegin { get; set; }
+
+        /// <summary>
+        /// 在该时间之前添加的
+        /// </summary>
+        public DateTime? AddedTimeFinal { get; set; }
+
+        [Required]
+        public Int32 Index { get; set; }
+
+        [Required]
+        [Range(10, 20)]
+        public Int32 Size { get; set; }
     }
 }
