@@ -49,6 +49,9 @@ namespace ZHS.WebApi
                 options.IncludeXmlComments(basePath + "/ZHS.NPOCO.xml");
             });
 
+            //配置hangfire
+            services.DeployHangfire(Configuration);
+
             services.AddScoped<IDatabase>(x =>
             {
                 return new Database(Configuration.GetConnectionString("Mysql"), DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
@@ -58,8 +61,16 @@ namespace ZHS.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            if (env.IsDevelopment())
+            {
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+                loggerFactory.AddDebug();
+
+            }
+            else
+            {
+                app.UseHangfire();
+            }
             app.UseSwagger();
             app.UseSwaggerUi() ;
             app.UseMvc();

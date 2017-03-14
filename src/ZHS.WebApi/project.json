@@ -18,7 +18,8 @@
       "target": "project"
     },
     "MySql.Data": "7.0.6-IR31",
-    "Swashbuckle": "6.0.0-beta902"
+    "Swashbuckle": "6.0.0-beta902",
+    "Hangfire.PostgreSql.NetCore": "1.4.3"
   },
 
   "tools": {
