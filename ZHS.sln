@@ -1,18 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26C5ABD7-D454-4A4D-B3BD-6036B28F45FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{45E6F8BC-9941-40F3-A192-C7E33B10E91D}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ZHS.WebApi", "src\ZHS.WebApi\ZHS.WebApi.xproj", "{BD88F16C-AB7B-4BC5-A8A3-139C73A7D794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHS.WebApi", "src\ZHS.WebApi\ZHS.WebApi.csproj", "{BD88F16C-AB7B-4BC5-A8A3-139C73A7D794}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ZHS.NPOCO", "src\ZHS.NPOCO\ZHS.NPOCO.xproj", "{85901C25-EB5C-4AF2-A1E1-9F573A20858A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHS.NPOCO", "src\ZHS.NPOCO\ZHS.NPOCO.csproj", "{85901C25-EB5C-4AF2-A1E1-9F573A20858A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{66D10A28-06FC-432D-ABBC-01BF3341E8D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +27,10 @@ Global
 		{85901C25-EB5C-4AF2-A1E1-9F573A20858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85901C25-EB5C-4AF2-A1E1-9F573A20858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85901C25-EB5C-4AF2-A1E1-9F573A20858A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

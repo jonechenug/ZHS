@@ -51,6 +51,7 @@ namespace ZHS.WebApi
 
             services.AddScoped<IDatabase>(x =>
             {
+                
                 return new Database(Configuration.GetConnectionString("Mysql"), DatabaseType.MySQL, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
             });
         }

@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0.3-sdk-projectjson
+FROM microsoft/dotnet:1.0-sdk
 RUN mkdir -p /app
 ARG source=.
 WORKDIR /ZHS.WebApi
