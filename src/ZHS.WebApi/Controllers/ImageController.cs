@@ -57,7 +57,7 @@ namespace ZHS.WebApi.Controllers
         /// <param name="code">code是一个随机数</param>
         /// <param name="numbers">生成位数（默认4位）</param>  
         [HttpGet]
-        public FileStream IdentifyingCode(int numbers = 4)
+        public FileStream IdentifyingCode([FromQuery]int numbers = 4)
         {
             var tempTTFName = $"{DateTime.Now.Ticks}.ttf";
             System.IO.File.Copy("hyqh.ttf", tempTTFName);
@@ -102,13 +102,14 @@ namespace ZHS.WebApi.Controllers
                     var fontCollection = new FontCollection();
                     var fontTemple = fontCollection.Install(tempTTFName);
                     var font = new Font(fontTemple, 16);
-                    var textColor = color[cindex];//颜色  
+                    var brush = new SolidBrush(color[cindex]);//颜色  
+                    //var textColor = color[cindex];//颜色  
                     int ii = 4;
                     if ((i + 1) % 2 == 0)//控制验证码不在同一高度  
                     {
                         ii = 2;
                     }
-                    image.DrawText(code.Substring(i, 1), font, textColor, new System.Numerics.Vector2(3 + (i * 12), ii));//绘制一个验证字符  
+                    image.DrawText(code.Substring(i, 1), font, brush, new System.Numerics.Vector2(3 + (i * 12), ii));//绘制一个验证字符  
                     
                 }
                 image.Save(output);
@@ -119,6 +120,48 @@ namespace ZHS.WebApi.Controllers
             }
             return System.IO.File.OpenRead(tempCodeName);
 
+        }
+        /// <summary>
+        /// 获取个人的二维码海报
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public FileStream QrcodeImg()
+        {
+            var tempName = DateTime.Now.Ticks.ToString();
+            var tempTemple = $"{tempName}-qrtemple.jpg";
+            var tempTTFName = $"{tempName}.ttf";
+            var tempMyrcodeName = $"{tempName}-myqrcode.jpg";
+            System.IO.File.Copy("qrtemple.jpg", tempTemple);
+            System.IO.File.Copy("hyqh.ttf", tempTTFName);
+            System.IO.File.Copy("qrcode.jpg", tempMyrcodeName);
+            var qrcodeName = $"{tempName}-qrcode.jpg";
+            using (FileStream streamTemple = System.IO.File.OpenRead(tempTemple))
+            using (FileStream streamQrcode = System.IO.File.OpenRead(tempMyrcodeName))
+            using (FileStream output = System.IO.File.OpenWrite(qrcodeName))
+            {
+                var imageTemple = new ImageSharp.Image(streamTemple);
+                var imageQrcode = new ImageSharp.Image(streamQrcode);
+                //imageFoo.Blend(imageBar, 100);
+                imageTemple.DrawImage(imageQrcode, 100, new ImageSharp.Size(imageQrcode.Width, imageQrcode.Height), new ImageSharp.Point(imageTemple.Width / 3, imageTemple.Height / 2));
+                var fontCollection = new FontCollection();
+                var font = fontCollection.Install(tempTTFName);
+                imageTemple.DrawText($"生成日期{DateTime.Now.ToString("yyyy.MM.dd")}", new SixLabors.Fonts.Font(font, imageTemple.Width / 40, FontStyle.Regular), new ImageSharp.Color(0, 0, 0), new System.Numerics.Vector2(imageTemple.Width* 1/3, imageTemple.Height*9/10));
+                imageTemple.Save(output);
+            }
+            if (System.IO.File.Exists(tempTemple))
+            {
+                System.IO.File.Delete(tempTemple);
+            }
+            if (System.IO.File.Exists(tempTTFName))
+            {
+                System.IO.File.Delete(tempTTFName);
+            }
+            if (System.IO.File.Exists(tempMyrcodeName))
+            {
+                System.IO.File.Delete(tempMyrcodeName);
+            }
+            return System.IO.File.OpenRead(qrcodeName);
         }
     }
 }
