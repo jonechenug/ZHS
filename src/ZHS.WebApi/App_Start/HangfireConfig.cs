@@ -17,12 +17,16 @@ namespace ZHS.WebApi
         /// <param name="Configuration"></param>
         internal static void DeployHangfire(this IServiceCollection services, IConfiguration Configuration)
         {
+            
             var sql = Configuration.GetConnectionString("Hangfire");
             //if (String.IsNullOrEmpty(sql))
             //{
             //    throw new Exception("Hangfire has null ConnectionString");
             //}
-            services.AddHangfire(context => context.UseStorage(new PostgreSqlStorage(sql)));
+            if (!String.IsNullOrEmpty(sql))
+            {
+                services.AddHangfire(context => context.UseStorage(new PostgreSqlStorage(sql)));
+            }
         }
 
         /// <summary>
