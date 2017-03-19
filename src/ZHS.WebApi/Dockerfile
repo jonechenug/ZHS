@@ -1,13 +1,7 @@
-FROM microsoft/dotnet:1.0-sdk
-RUN mkdir -p /app
+FROM microsoft/aspnetcore:1.0
 ARG source=.
-WORKDIR /ZHS.WebApi
-COPY $source .
-RUN dotnet restore
-RUN dotnet publish
-RUN cp -r  bin/Debug/netcoreapp1.0/publish /app
-WORKDIR /app/publish
-RUN rm -rf /ZHS.WebApi/*
+WORKDIR /app
 ENV ASPNETCORE_URLS http://*:80
 EXPOSE 80
-ENTRYPOINT dotnet ZHS.WebApi.dll
+COPY $source .
+ENTRYPOINT ["dotnet", "ZHS.WebApi.dll"]

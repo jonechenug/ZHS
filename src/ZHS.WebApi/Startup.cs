@@ -69,11 +69,12 @@ namespace ZHS.WebApi
             {
                 loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 loggerFactory.AddDebug();
+                //app.UseHangfire();
 
             }
             else
             {
-                app.UseHangfire();
+              
             }
             app.UseSwagger();
             app.UseSwaggerUi() ;
