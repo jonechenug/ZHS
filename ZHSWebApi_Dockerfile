@@ -4,8 +4,8 @@ RUN mkdir build
 WORKDIR /build
 ARG source=.
 COPY $source .
-RUN cd ZHS.WebApi && dotnet restore && dotnet publish -o /app
-RUN cp /build/ZHS.WebApi/bin/Debug/netcoreapp1.0/ZHS.WebApi.xml /app
+RUN cd src/ZHS.WebApi && dotnet restore && dotnet publish -o /app
+RUN cp /build/src/ZHS.WebApi/bin/Debug/netcoreapp1.0/ZHS.WebApi.xml /app
 RUN rm -r -f /build
 WORKDIR /app
 ENV ASPNETCORE_URLS http://*:80
