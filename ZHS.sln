@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26C5ABD7-D454-4A4D-B3BD-6036B28F45FF}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZHS.NPOCO", "src\ZHS.NPOCO\ZHS.NPOCO.csproj", "{85901C25-EB5C-4AF2-A1E1-9F573A20858A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{66D10A28-06FC-432D-ABBC-01BF3341E8D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZHS.StartupSimple", "src\ZHS.StartupSimple\ZHS.StartupSimple.csproj", "{702E1205-08E8-4403-882C-6D0EBC67A815}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66D10A28-06FC-432D-ABBC-01BF3341E8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702E1205-08E8-4403-882C-6D0EBC67A815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702E1205-08E8-4403-882C-6D0EBC67A815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702E1205-08E8-4403-882C-6D0EBC67A815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702E1205-08E8-4403-882C-6D0EBC67A815}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BD88F16C-AB7B-4BC5-A8A3-139C73A7D794} = {26C5ABD7-D454-4A4D-B3BD-6036B28F45FF}
 		{85901C25-EB5C-4AF2-A1E1-9F573A20858A} = {26C5ABD7-D454-4A4D-B3BD-6036B28F45FF}
+		{702E1205-08E8-4403-882C-6D0EBC67A815} = {26C5ABD7-D454-4A4D-B3BD-6036B28F45FF}
 	EndGlobalSection
 EndGlobal
