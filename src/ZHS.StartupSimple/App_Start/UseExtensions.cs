@@ -11,7 +11,6 @@ namespace ZHS.StartupSimple
         internal static void UseCustomExtensions(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUi();
         }
     }
 }

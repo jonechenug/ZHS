@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:1.0
+FROM microsoft/aspnetcore:2.0
 ARG source=.
 WORKDIR /app
 ENV ASPNETCORE_URLS http://*:80

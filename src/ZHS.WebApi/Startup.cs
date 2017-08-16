@@ -44,9 +44,9 @@ namespace ZHS.WebApi
                     Description = "",
                     TermsOfService = "None",
                 });
-                var basePath = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
-                options.IncludeXmlComments(basePath + "/ZHS.WebApi.xml");
-                options.IncludeXmlComments(basePath + "/ZHS.NPOCO.xml");
+                //var basePath = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
+                //options.IncludeXmlComments(basePath + "/ZHS.WebApi.xml");
+                //options.IncludeXmlComments(basePath + "/ZHS.NPOCO.xml");
             });
 
             //配置hangfire

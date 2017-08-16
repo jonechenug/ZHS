@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0-sdk
+FROM microsoft/dotnet:2.0-sdk
 RUN mkdir app
 RUN mkdir build
 WORKDIR /build
